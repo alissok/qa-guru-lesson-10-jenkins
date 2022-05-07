@@ -28,10 +28,10 @@ allure {
 
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:6.3.5",
-            "org.junit.jupiter:junit-jupiter:5.8.2",
+            "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "org.slf4j:slf4j-simple:1.7.36",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
             "com.github.javafaker:javafaker:1.0.2"
     )
 }
@@ -42,7 +42,7 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-//    systemProperties = System.properties
+    systemProperties = System.properties
 
     testLogging {
         lifecycle {

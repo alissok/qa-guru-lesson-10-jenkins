@@ -1,7 +1,5 @@
 package com.demoqa.tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -39,21 +37,6 @@ public class StudentRegFormTest extends TestSetup{
     SelenideElement hobbiesSelector = $("#hobbiesWrapper");
     //Text after registration
     String thanks = "Thanks for submitting the form";
-
-    @BeforeAll
-    static void setUp() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        open("https://demoqa.com");
-    }
-
-    @BeforeEach
-    void createScrollablePage() {
-        Selenide.executeJavaScript(
-                "document.querySelector(\"footer\").hidden = 'true';" +
-                        "document.querySelector(\"#fixedban\").hidden = 'true'");
-    }
 
     @Test
     void fillRegForm() {
