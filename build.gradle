@@ -42,7 +42,6 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-    systemProperties = System.properties
 
     testLogging {
         lifecycle {

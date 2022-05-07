@@ -35,12 +35,12 @@ public class TestSetup {
                         "document.querySelector(\"#fixedban\").hidden = 'true'");
     }
 
-//    @AfterEach
-//    void addAttachments() {
-//        Attach.screenshotAs("Last screenshot");
-//        Attach.pageSource();
-//        Attach.browserConsoleLogs();
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
 //        Attach.addVideo();
 //        closeWebDriver();
-//    }
+    }
 }
