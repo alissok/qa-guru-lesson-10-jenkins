@@ -8,8 +8,9 @@ import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static com.codeborne.selenide.Selenide.open;
 
-public class StudentRegFormTest extends TestSetup{
+public class StudentRegFormTest extends TestSetupAndTeardown {
 
     //Personal Info
     RandomStringUtils gen =  new RandomStringUtils();
@@ -39,12 +40,13 @@ public class StudentRegFormTest extends TestSetup{
     String thanks = "Thanks for submitting the form";
 
     @Test
-    @Tag("demoqa")
+    @Tag("demoqa_reg")
+    @DisplayName("Fill Registration Form With Random Data")
     void fillRegForm() {
-        step("Open Reg Form", () -> {
+        step("Open Registration Form", () -> {
             open("/automation-practice-form");
         });
-        step("Fill Reg Form", () -> {
+        step("Fill Registration Form", () -> {
             $("#firstName").setValue(firstName);
             $("#lastName").setValue(lastName);
             $("#userEmail").setValue(userEmail);
@@ -65,7 +67,7 @@ public class StudentRegFormTest extends TestSetup{
             $(stateAndCitySelector).$(byText(city)).click();
             $("#submit").pressEnter();
         });
-        step("Check Reg Form", () -> {
+        step("Check Filled Registration Form", () -> {
             $("#example-modal-sizes-title-lg").shouldHave(text(thanks));
             $(".table-responsive").shouldHave(
                     text(firstName),

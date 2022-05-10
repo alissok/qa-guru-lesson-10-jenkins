@@ -1,14 +1,14 @@
 package com.demoqa.tests;
 
-import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.StudentRegFromPages;
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.*;
 import java.util.Locale;
+import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
-public class StudentRegFormTestWithPageObj {
+public class StudentRegFormTestWithPageObj extends TestSetupAndTeardown {
     Faker faker = new Faker(new Locale("en"));
     RandomStringUtils gen =  new RandomStringUtils();
     //Personal Info
@@ -40,39 +40,39 @@ public class StudentRegFormTestWithPageObj {
 
     StudentRegFromPages regForm = new StudentRegFromPages();
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
-
     @Test
+    @Tag("demoqa_reg")
+    @DisplayName("Fill Registration Form With Random Data Using Page Objects")
     void fillRegForm() {
-        regForm.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGender(gender)
-                .setNumber(mobile)
-                .setDateOfBirth(day, month, year)
-                .setSubject(subject)
-                .setHobby(hobby)
-                .setUserPic(filename)
-                .setAddress(currAddress)
-                .setStateAndCity(state, city)
-                .pressSubmit()
-
-                .checkHeader(thanks)
-                .checkResult("Student Name", expFullName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", mobile)
-                .checkResult("Date of Birth", expDateOfBirth)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Address", currAddress)
-                .checkResult("State and City", expStateCity)
-                .closeModal();
+        step("Open Registration Form", () -> {
+            regForm.openPage();
+        });
+        step("Fill Registration Form", () -> {
+            regForm.setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(userEmail)
+                    .setGender(gender)
+                    .setNumber(mobile)
+                    .setDateOfBirth(day, month, year)
+                    .setSubject(subject)
+                    .setHobby(hobby)
+                    .setUserPic(filename)
+                    .setAddress(currAddress)
+                    .setStateAndCity(state, city)
+                    .pressSubmit();
+        });
+        step("Check Filled Registration Form", () -> {
+            regForm.checkHeader(thanks)
+                    .checkResult("Student Name", expFullName)
+                    .checkResult("Student Email", userEmail)
+                    .checkResult("Gender", gender)
+                    .checkResult("Mobile", mobile)
+                    .checkResult("Date of Birth", expDateOfBirth)
+                    .checkResult("Subjects", subject)
+                    .checkResult("Hobbies", hobby)
+                    .checkResult("Address", currAddress)
+                    .checkResult("State and City", expStateCity)
+                    .closeModal();
+        });
     }
 }
