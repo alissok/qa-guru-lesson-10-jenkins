@@ -39,10 +39,10 @@ public class TestSetupAndTeardown {
 
     @AfterEach
     void addAttachments() {
-//        Attach.screenshotAs("Screen");
-//        Attach.pageSource();
-//        Attach.browserConsoleLogs();
-//        Attach.addVideo();
+        Attach.screenshotAs("Screen");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
         closeWebDriver();
     }
 }
