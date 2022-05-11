@@ -6,7 +6,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 import static com.codeborne.selenide.Selenide.open;
 
