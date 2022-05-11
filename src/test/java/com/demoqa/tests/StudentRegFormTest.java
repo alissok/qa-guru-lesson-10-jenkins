@@ -1,5 +1,6 @@
 package com.demoqa.tests;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -45,6 +46,9 @@ public class StudentRegFormTest extends TestSetupAndTeardown {
     void fillRegForm() {
         step("Open Registration Form", () -> {
             open("/automation-practice-form");
+            Selenide.executeJavaScript(
+                    "document.querySelector(\"footer\").hidden = 'true';" +
+                            "document.querySelector(\"#fixedban\").hidden = 'true'");
         });
         step("Fill Registration Form", () -> {
             $("#firstName").setValue(firstName);
